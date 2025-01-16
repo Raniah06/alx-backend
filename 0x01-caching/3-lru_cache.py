@@ -4,6 +4,7 @@
 from base_caching import BaseCaching
 from collections import OrderedDict
 
+
 class LRUCache(BaseCaching):
     """ LRUCache defines a LRU caching system. """
 
@@ -20,7 +21,8 @@ class LRUCache(BaseCaching):
         if key is not None and item is not None:
             # If the cache exceeds the max number of items, discard the LRU item.
             if len(self.cache_data) >= BaseCaching.MAX_ITEMS:
-                discarded_key, discarded_value = self.cache_data.popitem(last=False)  # Remove LRU (first item)
+                discarded_key, discarded_value = self.cache_data.popitem(last=False)
+                # Remove LRU (first item)
                 print("DISCARD:", discarded_key)
 
             # Add or update the cache with the new item and mark it as recently used.
