@@ -1,3 +1,11 @@
+#!/usr/bin/python3
+"""
+MRUCache module
+This module implements the MRUCache class which inherits from BaseCaching.
+It provides methods to add and retrieve items from the cache while
+evicting the most recently used item when the cache exceeds the MAX_ITEMS limit.
+"""
+
 from collections import OrderedDict
 from base_caching import BaseCaching
 
