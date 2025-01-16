@@ -20,7 +20,7 @@ class MRUCache(BaseCaching):
             # If the cache exceeds the max number of items, discard the MRU item.
             if len(self.cache_data) >= BaseCaching.MAX_ITEMS:
                 # Discard the most recently used item (the last item in the dictionary)
-                discarded_key, discarded_value = self.cache_data.popitem(last=True)
+                discarded_key, discarded_value = self.cache_data.popitem()
                 print("DISCARD:", discarded_key)
 
             # Add or update the cache with the new item.
