@@ -18,7 +18,7 @@ class MRUCache(BaseCaching):
         self.cache = OrderedDict()
 
     def put(self, key, item):
-        """Add an item to the cache, evicting the most recently used item if necessary"""
+        """Add an item to the cache, evicting the oldest item if necessary"""
         if key is None or item is None:
             return
         if key in self.cache:
@@ -27,8 +27,8 @@ class MRUCache(BaseCaching):
         self.cache[key] = item
 
         if len(self.cache) > BaseCaching.MAX_ITEMS:
-            # Pop the most recently used (MRU) item
-            discarded_key, discarded_value = self.cache.popitem(last=True)
+            # Pop the oldest item (least recently used)
+            discarded_key, discarded_value = self.cache.popitem(last=False)
             print(f"DISCARD: {discarded_key}")
 
     def get(self, key):
