@@ -19,7 +19,7 @@ class FIFOCache(BaseCaching):
         """
         if key is not None and item is not None:
             # If the key is new and the cache is full, remove the oldest item.
-            if key not i
+            if key not in 
 self.cache_data and
 len(self.cache_data) >=
 BaseCaching.MAX_ITEMS:
