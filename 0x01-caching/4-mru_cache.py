@@ -27,7 +27,7 @@ class MRUCache(BaseCaching):
         self.cache[key] = item
 
         if len(self.cache) > BaseCaching.MAX_ITEMS:
-            # Pop the oldest item (least recently used)
+            # Pop the least recently used (oldest) item, change last=False to evict the oldest
             discarded_key, discarded_value = self.cache.popitem(last=False)
             print(f"DISCARD: {discarded_key}")
 
