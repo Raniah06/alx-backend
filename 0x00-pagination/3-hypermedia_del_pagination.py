@@ -65,9 +65,7 @@ class Server:
                 data.append(indexed_data[current_index])
             current_index += 1
 
-        next_index = current_index 
-        if current_index < len(indexed_data)
-        else None
+        next_index = current_index if current_index < len(indexed_data) else None
 
         return {
             "index": index,
