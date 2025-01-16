@@ -14,7 +14,7 @@ class MRUCache(BaseCaching):
     MRUCache class that implements a Most Recently Used (MRU) cache.
 
     This class inherits from BaseCaching and implements the put and get methods.
-    The cache stores key-value pairs and evicts the most recently used item
+    The cache stores key-value pairs and evicts the least recently used item
     when the cache exceeds the maximum allowed items.
     """
     
@@ -31,15 +31,15 @@ class MRUCache(BaseCaching):
         """
         Add an item to the cache or update an existing item.
         
-        If the cache exceeds the maximum allowed items, the most recently
-        used item is discarded.
+        If the cache exceeds the maximum allowed items, the least recently used
+        item is discarded.
 
         Args:
             key (str): The key to store the item.
             item (str): The value associated with the key.
 
         If either key or item is None, this method does nothing.
-        If the number of items exceeds MAX_ITEMS, the most recently used
+        If the number of items exceeds MAX_ITEMS, the least recently used
         item is removed and the key is printed in a discard message.
         """
         if key is None or item is None:
@@ -48,12 +48,12 @@ class MRUCache(BaseCaching):
         # Add or update the cache with the new key and item
         self.cache_data[key] = item
 
-        # If the number of items exceeds MAX_ITEMS, discard the most recently used
+        # If the number of items exceeds MAX_ITEMS, discard the least recently used
         if len(self.cache_data) > BaseCaching.MAX_ITEMS:
-            # Pop the most recently added (last one)
-            mru_key = list(self.cache_data.keys())[-1]
-            del self.cache_data[mru_key]
-            print(f"DISCARD: {mru_key}")
+            # Pop the first item in the cache (the least recently used)
+            lru_key = list(self.cache_data.keys())[0]
+            del self.cache_data[lru_key]
+            print(f"DISCARD: {lru_key}")
 
     def get(self, key):
         """
