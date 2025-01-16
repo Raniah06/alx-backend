@@ -40,7 +40,7 @@ class Server:
 
     def get_hyper_index(self, index: int = None, page_size: int = 10) -> Dict:
         """
-        Returns a dictionary with pagination details, ensuring deletion resilience.
+        Returns a dict with pagination details, ensuring deletion resilience.
 
         Args:
             index (int): The start index for the page.
