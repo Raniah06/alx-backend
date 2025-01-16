@@ -4,7 +4,7 @@ Module for implementing an MRU (Most Recently Used) Cache.
 
 This module contains the MRUCache class that inherits from the BaseCaching
 class and implements the MRU caching algorithm. The cache stores items up to
-a maximum limit, discarding the most recently used item when the limit is exceeded.
+a maximum limit, discarding the least recently used item when the limit is exceeded.
 """
 
 from base_caching import BaseCaching
