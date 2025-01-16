@@ -3,6 +3,7 @@
 
 from base_caching import BaseCaching
 
+
 class LIFOCache(BaseCaching):
     """ LIFOCache defines a LIFO caching system. """
 
@@ -16,9 +17,9 @@ class LIFOCache(BaseCaching):
         If `key` or `item` is None, do nothing.
         """
         if key is not None and item is not None:
-            # If the cache exceeds the max number of items, discard the last.
+            # If the cache exceeds the max number of items, discard the last item inserted.
             if len(self.cache_data) >= BaseCaching.MAX_ITEMS:
-                last_key = list(self.cache_data.keys())[-1]  # Get.
+                last_key = list(self.cache_data.keys())[-1]  # Get the last inserted key.
                 del self.cache_data[last_key]
                 print("DISCARD:", last_key)
 
