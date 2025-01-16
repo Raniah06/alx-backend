@@ -1,46 +1,53 @@
-#!/usr/bin/python3
-"""
-MRUCache module
-This module implements the MRUCache class which inherits from BaseCaching.
-It provides methods to add and retrieve items from the cache while
-evicting the most recently used item when the cache exceeds the MAX_ITEMS limit.
-"""
+#!/usr/bin/env python3
+"""MRU Caching implementation."""
 
-from collections import OrderedDict
-from base_caching import BaseCaching
-
-class MRUCache(BaseCaching):
-    """MRUCache class that inherits from BaseCaching"""
+class BaseCaching:
+    """
+    Base class for caching systems.
+    """
+    MAX_ITEMS = 100
+    cache_data = {}
 
     def __init__(self):
-        """Initialize the cache"""
+        """Initialize"""
+        self.cache_data = {}
+
+class MRUCache(BaseCaching):
+    """
+    MRU Cache implementation.
+    """
+
+    def __init__(self):
+        """Initialize"""
         super().__init__()
-        self.cache = OrderedDict()
+        self.used_keys = []
 
     def put(self, key, item):
-        """Add an item to the cache, evicting the most recently used item if necessary"""
+        """
+        Add an item to the cache using MRU algorithm.
+        """
         if key is None or item is None:
             return
-        if key in self.cache:
-            # Move the key to the end (most recent)
-            self.cache.move_to_end(key)
-        self.cache[key] = item
 
-        if len(self.cache) > BaseCaching.MAX_ITEMS:
-            # Pop the most recently used (last) item
-            discarded_key, discarded_value = self.cache.popitem(last=True)
-            print(f"DISCARD: {discarded_key}")
+        if key in self.cache_data:
+            self.used_keys.remove(key)
+
+        self.cache_data[key] = item
+        self.used_keys.append(key)
+
+        if len(self.cache_data) > BaseCaching.MAX_ITEMS:
+            discarded_key = self.used_keys.pop(0)
+            del self.cache_data[discarded_key]
+            print("DISCARD: {}".format(discarded_key))
 
     def get(self, key):
-        """Return the value linked to the key, or None if the key does not exist"""
-        if key is None or key not in self.cache:
+        """
+        Retrieve an item from the cache.
+        """
+        if key is None or key not in self.cache_data:
             return None
-        # Move the key to the end (most recent)
-        self.cache.move_to_end(key)
-        return self.cache[key]
 
-    def print_cache(self):
-        """Print the current state of the cache"""
-        print("Current cache:")
-        for key, value in self.cache.items():
-            print(f"{key}: {value}")
+        self.used_keys.remove(key)
+        self.used_keys.append(key)
+
+        return self.cache_data[key]
