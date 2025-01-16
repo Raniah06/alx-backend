@@ -40,7 +40,7 @@ class Server:
 
     def get_hyper_index(self, index: int = None, page_size: int = 10) -> Dict:
         """
-        Returns a dictionary with pagination details, ensuring deletion resilience.
+        Returns a dict with pagination details, ensuring deletion resilience.
 
         Args:
             index (int): The start index for the page.
@@ -53,7 +53,7 @@ class Server:
                 - page_size: The current page size.
                 - data: The dataset page.
         """
-        assert isinstance(index, int) and index >= 0, "Index must be a non-negative integer."
+        assert isinstance(index, int) and index >= 0, "Index must be +"
         assert index < len(self.indexed_dataset()), "Index out of range."
 
         indexed_data = self.indexed_dataset()
@@ -65,7 +65,9 @@ class Server:
                 data.append(indexed_data[current_index])
             current_index += 1
 
-        next_index = current_index if current_index < len(indexed_data) else None
+        next_index = current_index 
+        if current_index < len(indexed_data)
+        else None
 
         return {
             "index": index,
