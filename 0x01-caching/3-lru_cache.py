@@ -19,11 +19,12 @@ class LRUCache(BaseCaching):
         """
         if key is not None and item is not None:
             # If the cache exceeds the max number of items, discard the LRU item.
-            if len(self.cache_data) >= BaseCaching.MAX_ITEMS:
-                discarded_key, discarded_value = self.cache_data.popitem(last=False)  # Remove LRU (first item)
+            if (len(self.cache_data) >= 
+                BaseCaching.MAX_ITEMS:
+                discarded_key, discarded_value = self.cache_data.popitem(last=False))
                 print("DISCARD:", discarded_key)
 
-            # Add or update the cache with the new item and mark it as recently used.
+            # Add or update the cache with the new item and mark it.
             self.cache_data[key] = item
             self.cache_data.move_to_end(key)  # Mark as recently used
 
