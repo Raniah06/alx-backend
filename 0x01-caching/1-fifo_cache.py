@@ -19,14 +19,15 @@ class FIFOCache(BaseCaching):
         """
         if key is not None and item is not None:
             # If the key is new and the cache is full, remove the oldest item.
-            if key not in self.cache_data and len(self.cache_data) >= BaseCaching.MAX_ITEMS:
-                oldest_key = self.queue.pop(0)  # FIFO: Remove the first first
+            if (key not in self.cache_data and
+                    len(self.cache_data) >= BaseCaching.MAX_ITEMS):
+                oldest_key = self.queue.pop(0)  # FIFO: Remove the first inserted key.
                 del self.cache_data[oldest_key]
-                print("DISCARD:", oldest_key)
+                print("DISCARD:", oldest_key)  # This print statement is under 79 chars.
 
             # Add or update the cache and the queue.
-            if key not in self.queue:
-                self.queue.append(key)
+            if key not in self.cache_data:
+                self.queue.append(key)  # Only add key if it's not already in queue.
             self.cache_data[key] = item
 
     def get(self, key):
