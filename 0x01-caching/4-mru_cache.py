@@ -1,53 +1,28 @@
-#!/usr/bin/env python3
-"""MRU Caching implementation."""
-
-class BaseCaching:
-    """
-    Base class for caching systems.
-    """
-    MAX_ITEMS = 100
-    cache_data = {}
-
-    def __init__(self):
-        """Initialize"""
-        self.cache_data = {}
+#!/usr/bin/python3
+from base_caching import BaseCaching
 
 class MRUCache(BaseCaching):
-    """
-    MRU Cache implementation.
-    """
-
     def __init__(self):
-        """Initialize"""
+        """Initialize the MRUCache class"""
         super().__init__()
-        self.used_keys = []
 
     def put(self, key, item):
-        """
-        Add an item to the cache using MRU algorithm.
-        """
+        """Assign the value to the dictionary and apply MRU cache logic"""
         if key is None or item is None:
             return
 
-        if key in self.cache_data:
-            self.used_keys.remove(key)
-
+        # Add or update the cache with the new key and item
         self.cache_data[key] = item
-        self.used_keys.append(key)
 
+        # If the number of items exceeds MAX_ITEMS, discard the most recently used
         if len(self.cache_data) > BaseCaching.MAX_ITEMS:
-            discarded_key = self.used_keys.pop(0)
-            del self.cache_data[discarded_key]
-            print("DISCARD: {}".format(discarded_key))
+            # Pop the most recently added (last one)
+            mru_key = list(self.cache_data.keys())[-1]
+            del self.cache_data[mru_key]
+            print(f"DISCARD: {mru_key}")
 
     def get(self, key):
-        """
-        Retrieve an item from the cache.
-        """
+        """Return the item associated with the key, or None if not found"""
         if key is None or key not in self.cache_data:
             return None
-
-        self.used_keys.remove(key)
-        self.used_keys.append(key)
-
         return self.cache_data[key]
