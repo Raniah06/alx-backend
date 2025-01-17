@@ -1,20 +1,19 @@
-#!/usr/bin/python3
-# Import necessary modules from the Flask framework
+#!/usr/bin/env python3
+"""A Basic Flask app.
+"""
 from flask import Flask, render_template
 
-# Create an instance of the Flask class
-app = Flask(__name__)
 
-# Define the route for the home page ("/")
+app = Flask(__name__)
+app.url_map.strict_slashes = False
+
+
 @app.route('/')
-def hello_world():
-    """
-    This function handles requests to the root URL ("/").
-    It renders an HTML page (0-index.html) located in the 'templates' directory.
+def get_index() -> str:
+    """The home/index page.
     """
     return render_template('0-index.html')
 
-# Ensure the app runs when the script is executed directly
-if __name__ == "__main__":
-    # Start the Flask application on the local server
-    app.run()
+
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port=5000)
