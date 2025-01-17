@@ -1,21 +1,20 @@
-#!/usr/bin/env python3
-"""
-0-app.py - Basic Flask app
-This module defines a simple Flask application with a single route ('/') that
-renders an HTML template.
-"""
-
+#!/usr/bin/python3
+# Import necessary modules from the Flask framework
 from flask import Flask, render_template
 
+# Create an instance of the Flask class
 app = Flask(__name__)
 
+# Define the route for the home page ("/")
 @app.route('/')
-def index():
+def hello_world():
     """
-    Render the index page.
+    This function handles requests to the root URL ("/").
+    It renders an HTML page (0-index.html) located in the 'templates' directory.
     """
     return render_template('0-index.html')
 
-
+# Ensure the app runs when the script is executed directly
 if __name__ == "__main__":
-    app.run(host='0.0.0.0', port=5000, debug=True)
+    # Start the Flask application on the local server
+    app.run()
