@@ -4,7 +4,7 @@ Module for implementing an MRU (Most Recently Used) Cache.
 
 This module contains the MRUCache class that inherits from the BaseCaching
 class and implements the MRU caching algorithm. The cache stores items up to
-a maximum limit, discarding the most recently used item when the limit is exceeded.
+a maximum limit, discarding the most recently used item when the limit
 """
 
 from base_caching import BaseCaching
@@ -14,7 +14,7 @@ class MRUCache(BaseCaching):
     """
     MRUCache class that implements a Most Recently Used (MRU) cache.
 
-    This class inherits from BaseCaching and implements the put and get methods.
+    This class inherits from BaseCaching and implements the put and get meths.
     The cache stores key-value pairs and evicts the most recently used item
     when the cache exceeds the maximum allowed items.
     """
@@ -22,7 +22,7 @@ class MRUCache(BaseCaching):
     def __init__(self):
         """
         Initialize the MRUCache class.
-        
+
         This constructor calls the parent class (BaseCaching) to initialize
         the cache data and initializes a list to track access order.
         """
@@ -32,7 +32,7 @@ class MRUCache(BaseCaching):
     def put(self, key, item):
         """
         Add an item to the cache or update an existing item.
-        
+
         If the cache exceeds the maximum allowed items, the most recently used
         item is discarded.
 
@@ -66,7 +66,7 @@ class MRUCache(BaseCaching):
             key (str): The key to look for in the cache.
 
         Returns:
-            str: The value associated with the key, or None if the key is not found.
+            str: The value associated with the key, or None if the key is not.
 
         If the key exists, it is marked as most recently used.
         """
