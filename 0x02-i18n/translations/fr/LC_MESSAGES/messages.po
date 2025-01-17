@@ -1,3 +1,8 @@
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+"Language: fr\n"
+
 msgid "home_title"
 msgstr "Bienvenue chez ALX"
 

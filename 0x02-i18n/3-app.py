@@ -9,7 +9,7 @@ from flask_babel import Babel, _
 
 app = Flask(__name__)
 
-# Configure the app for Flask-Babel
+# Configure Flask-Babel
 app.config['BABEL_DEFAULT_LOCALE'] = 'en'
 app.config['BABEL_TRANSLATION_DIRECTORIES'] = 'translations'
 
@@ -20,6 +20,7 @@ babel = Babel(app)
 def index():
     """
     Render the index page with translated content.
+    The translations are managed using Flask-Babel's `_` function.
     """
     return render_template('3-index.html')
 
