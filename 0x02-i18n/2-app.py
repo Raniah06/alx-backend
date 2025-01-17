@@ -36,7 +36,7 @@ babel = Babel(app)
 @babel.localeselector
 def get_locale():
     """
-    Determines the best matching locale from the request's Accept-Language header.
+    Determines the best matching locale from the request's Accept-Language.
 
     Returns:
         str: The best matching language from the supported languages.
