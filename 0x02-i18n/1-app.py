@@ -9,8 +9,6 @@ a default locale of English and a default timezone of UTC.
 from flask import Flask, render_template
 from flask_babel import Babel
 
-# Initialize Flask application
-app = Flask(__name__)
 
 # Configuration class
 class Config:
@@ -27,7 +25,8 @@ class Config:
     BABEL_DEFAULT_TIMEZONE = 'UTC'
 
 
-# Apply configuration
+# Initialize Flask application
+app = Flask(__name__)
 app.config.from_object(Config)
 
 # Initialize Babel
