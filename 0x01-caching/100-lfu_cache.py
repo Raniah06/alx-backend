@@ -56,7 +56,9 @@ class LFUCache(BaseCaching):
         """Retrieve the key of the least frequently used item."""
         min_freq = min(self.usage_frequency.values())
         candidates = [
-                key for key, freq in self.usage_frequency.items() if freq == min_freq
+                key for key, freq in
+                self.usage_frequency.items() 
+                if freq == min_freq
                 ]
 
         # If multiple candidates, use the least recently used (LRU) among them
